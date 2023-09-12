@@ -3,8 +3,8 @@ title: "Thesis"
 author: "Dadmehr Didgart"
 date: "2023-09-12"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 
@@ -703,333 +703,328 @@ This R code generates and visualizes data on various demographic grids (e.g. age
 This script serves as an exploratory data analysis tool for visualizing mutual gains across different demographic grids.
 
 
-```{r, warning=FALSE, message=FALSE}
+```{r, fig.width=7, fig.height=7, warning=FALSE, message=FALSE}
 
 n_year <<- 2021
 
 
-draw <- function(n_year){
-  
-  income_grid <<- jm_income_grid
-  age_grid <<- jm_age_grid
-  edu_grid <<- jm_edu_grid
-  race_grid <<- jm_race_grid
-  
-  n_age <<- length(age_grid)
-  n_income <<- length(income_grid)
-  n_edu <<- length(edu_grid)
-  n_race <<- length(race_grid)
-  
-  
-  
-  store <- funk(n_year)
-  Mu_all <- store$Mu_all
-  pair_data <- store$pair_data
-  
-  
-  
-  ####            AGE 
-  
-  
-  
-  N_Age <- matrix(0, n_age, n_age)
-  Mu_age <- matrix(0, n_age, n_age)
-  Mu_M_age <- matrix(0, n_age, n_age)
-  Mu_F_age <- matrix(0, n_age, n_age)
-  #log version
-  Mu_age_log <- matrix(0, n_age, n_age)
-  Mu_M_age_log <- matrix(0, n_age, n_age)
-  Mu_F_age_log <- matrix(0, n_age, n_age)
-  
-  #ave
-  Mu_age_ave <- matrix(0, n_age, n_age)
-  Mu_M_age_ave <- matrix(0, n_age, n_age)
-  Mu_F_age_ave <- matrix(0, n_age, n_age)
-  #ave log version
-  Mu_age_log_ave <- matrix(0, n_age, n_age)
-  Mu_M_age_log_ave <- matrix(0, n_age, n_age)
-  Mu_F_age_log_ave <- matrix(0, n_age, n_age)
-  
-  #median 
-  Mu_age_median <- matrix(0, n_age, n_age)
-  Mu_M_age_median <- matrix(0, n_age, n_age)
-  Mu_F_age_median <- matrix(0, n_age, n_age)
-  #median log version
-  Mu_age_log_median <- matrix(0, n_age, n_age)
-  Mu_M_age_log_median <- matrix(0, n_age, n_age)
-  Mu_F_age_log_median <- matrix(0, n_age, n_age)
-  
-  
-  for (i in 1:n_age){
-    for (j in 1:n_age){
-      #use pi
-      current_sub <- subset(Mu_all, Mu_all$NEW_AGE.x == i & Mu_all$NEW_AGE.y == j)
-      
-      total_folks = 1 # sum(current_sub$n)
-      
-      Mu_age_log[i,j] = sum(current_sub$EV_log_expected) / total_folks
-      Mu_F_age_log[i,j] = sum(current_sub$EV_female_log_expected) / total_folks
-      Mu_M_age_log[i,j] = sum(current_sub$EV_male_log_expected) / total_folks
-      
-      Mu_age[i,j] = sum(current_sub$EV) / total_folks
-      Mu_F_age[i,j] = sum(current_sub$EV_female) / total_folks
-      Mu_M_age[i,j] = sum(current_sub$EV_male) / total_folks
-      N_Age[i,j] = dim(current_sub)[1]
-      
-      
-      # median
-      
-      Mu_age_log_median[i,j] = median(current_sub$EV_log_expected) / total_folks
-      Mu_F_age_log_median[i,j] = median(current_sub$EV_female_log_expected) / total_folks
-      Mu_M_age_log_median[i,j] = median(current_sub$EV_male_log_expected) / total_folks
-      
-      Mu_age_median[i,j] = median(current_sub$EV) / total_folks
-      Mu_F_age_median[i,j] = median(current_sub$EV_female) / total_folks
-      Mu_M_age_median[i,j] = median(current_sub$EV_male) / total_folks
 
-      # ave
-      Mu_age_log_ave[i,j] = mean(current_sub$EV_log_expected) / total_folks
-      Mu_F_age_log_ave[i,j] = mean(current_sub$EV_female_log_expected) / total_folks
-      Mu_M_age_log_ave[i,j] = mean(current_sub$EV_male_log_expected) / total_folks
-      
-      Mu_age_ave[i,j] = mean(current_sub$EV) / total_folks
-      Mu_F_age_ave[i,j] = mean(current_sub$EV_female) / total_folks
-      Mu_M_age_ave[i,j] = mean(current_sub$EV_male) / total_folks
 
-    }
+income_grid <<- jm_income_grid
+age_grid <<- jm_age_grid
+edu_grid <<- jm_edu_grid
+race_grid <<- jm_race_grid
+
+n_age <<- length(age_grid)
+n_income <<- length(income_grid)
+n_edu <<- length(edu_grid)
+n_race <<- length(race_grid)
+
+
+
+store <- funk(n_year)
+Mu_all <- store$Mu_all
+pair_data <- store$pair_data
+
+
+
+####            AGE 
+
+
+
+N_Age <- matrix(0, n_age, n_age)
+Mu_age <- matrix(0, n_age, n_age)
+Mu_M_age <- matrix(0, n_age, n_age)
+Mu_F_age <- matrix(0, n_age, n_age)
+#log version
+Mu_age_log <- matrix(0, n_age, n_age)
+Mu_M_age_log <- matrix(0, n_age, n_age)
+Mu_F_age_log <- matrix(0, n_age, n_age)
+
+#ave
+Mu_age_ave <- matrix(0, n_age, n_age)
+Mu_M_age_ave <- matrix(0, n_age, n_age)
+Mu_F_age_ave <- matrix(0, n_age, n_age)
+#ave log version
+Mu_age_log_ave <- matrix(0, n_age, n_age)
+Mu_M_age_log_ave <- matrix(0, n_age, n_age)
+Mu_F_age_log_ave <- matrix(0, n_age, n_age)
+
+#median 
+Mu_age_median <- matrix(0, n_age, n_age)
+Mu_M_age_median <- matrix(0, n_age, n_age)
+Mu_F_age_median <- matrix(0, n_age, n_age)
+#median log version
+Mu_age_log_median <- matrix(0, n_age, n_age)
+Mu_M_age_log_median <- matrix(0, n_age, n_age)
+Mu_F_age_log_median <- matrix(0, n_age, n_age)
+
+
+for (i in 1:n_age){
+  for (j in 1:n_age){
+    #use pi
+    current_sub <- subset(Mu_all, Mu_all$NEW_AGE.x == i & Mu_all$NEW_AGE.y == j)
+    
+    total_folks = 1 # sum(current_sub$n)
+    
+    Mu_age_log[i,j] = sum(current_sub$EV_log_expected) / total_folks
+    Mu_F_age_log[i,j] = sum(current_sub$EV_female_log_expected) / total_folks
+    Mu_M_age_log[i,j] = sum(current_sub$EV_male_log_expected) / total_folks
+    
+    Mu_age[i,j] = sum(current_sub$EV) / total_folks
+    Mu_F_age[i,j] = sum(current_sub$EV_female) / total_folks
+    Mu_M_age[i,j] = sum(current_sub$EV_male) / total_folks
+    N_Age[i,j] = dim(current_sub)[1]
+    
+    
+    # median
+    
+    Mu_age_log_median[i,j] = median(current_sub$EV_log_expected) / total_folks
+    Mu_F_age_log_median[i,j] = median(current_sub$EV_female_log_expected) / total_folks
+    Mu_M_age_log_median[i,j] = median(current_sub$EV_male_log_expected) / total_folks
+    
+    Mu_age_median[i,j] = median(current_sub$EV) / total_folks
+    Mu_F_age_median[i,j] = median(current_sub$EV_female) / total_folks
+    Mu_M_age_median[i,j] = median(current_sub$EV_male) / total_folks
+
+    # ave
+    Mu_age_log_ave[i,j] = mean(current_sub$EV_log_expected) / total_folks
+    Mu_F_age_log_ave[i,j] = mean(current_sub$EV_female_log_expected) / total_folks
+    Mu_M_age_log_ave[i,j] = mean(current_sub$EV_male_log_expected) / total_folks
+    
+    Mu_age_ave[i,j] = mean(current_sub$EV) / total_folks
+    Mu_F_age_ave[i,j] = mean(current_sub$EV_female) / total_folks
+    Mu_M_age_ave[i,j] = mean(current_sub$EV_male) / total_folks
+
   }
-  
-  
-  x_age=c(1:length(age_grid))
-  
-  
-  smooth_N_Age <- kernel2dsmooth(N_Age, kernel.type="disk", r=2)
-  
-  # self
-  smooth_Mu_age <- kernel2dsmooth(Mu_age, kernel.type="disk", r=2)
-  smooth_Mu_M_age <- kernel2dsmooth(Mu_M_age, kernel.type="disk", r=2)
-  smooth_Mu_F_age <- kernel2dsmooth(Mu_F_age, kernel.type="disk", r=2)
-  
-  #log
-  smooth_Mu_age_log <- kernel2dsmooth(Mu_age_log, kernel.type="disk", r=2)
-  smooth_Mu_M_age_log <- kernel2dsmooth(Mu_M_age_log, kernel.type="disk", r=2)
-  smooth_Mu_F_age_log <- kernel2dsmooth(Mu_F_age_log, kernel.type="disk", r=2)
-  
-  # median self
-  smooth_Mu_age_median <- kernel2dsmooth(Mu_age_median, kernel.type="disk", r=2)
-  smooth_Mu_M_age_median <- kernel2dsmooth(Mu_M_age_median, kernel.type="disk", r=2)
-  smooth_Mu_F_age_median <- kernel2dsmooth(Mu_F_age_median, kernel.type="disk", r=2)
-  
-  # median log
-  smooth_Mu_age_log_median <- kernel2dsmooth(Mu_age_log_median, kernel.type="disk", r=2)
-  smooth_Mu_M_age_log_median <- kernel2dsmooth(Mu_M_age_log_median, kernel.type="disk", r=2)
-  smooth_Mu_F_age_log_median <- kernel2dsmooth(Mu_F_age_log_median, kernel.type="disk", r=2)
-  
-  #mean self
-  smooth_Mu_age_ave <- kernel2dsmooth(Mu_age_ave, kernel.type="disk", r=2)
-  smooth_Mu_M_age_ave <- kernel2dsmooth(Mu_M_age_ave, kernel.type="disk", r=2)
-  smooth_Mu_F_age_ave <- kernel2dsmooth(Mu_F_age_ave, kernel.type="disk", r=2)
-  
-  #mean log
-  smooth_Mu_age_log_ave <- kernel2dsmooth(Mu_age_log_ave, kernel.type="disk", r=2)
-  smooth_Mu_M_age_log_ave <- kernel2dsmooth(Mu_M_age_log_ave, kernel.type="disk", r=2)
-  smooth_Mu_F_age_log_ave <- kernel2dsmooth(Mu_F_age_log_ave, kernel.type="disk", r=2)
-  
-
-  persp(x_age,x_age,smooth_Mu_age, theta=-20, phi=30, r=5,
-        shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed",
-        col="cyan", xlab="Female age level",
-        ylab="Male age level", zlab="Estimated mutual gain",
-        main=paste("Smooth Mu Age Both for", n_year))
-
-
-  persp(x_age,x_age,smooth_Mu_M_age, theta=-20, phi=30, r=5, 
-        shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed",
-        col="cyan", xlab="Female age level",
-        ylab="Male age level", zlab="Estimated male gain", 
-        main=paste("Smooth Mu Age M for", n_year))
-  
-  persp(x_age,x_age,smooth_Mu_F_age, theta=-20, phi=30, r=5,
-        shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed",
-        col="cyan", xlab="Female age level",
-        ylab="Male age level", zlab="Estimated female gain", 
-        main=paste("Smooth  Mu Age F for", n_year))
-  
-  persp(x_age,x_age,smooth_N_Age, theta=-20, phi=30, r=5,
-        shade=0.4, axes=TRUE, scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed",
-        col="cyan", xlab="Female age level",
-        ylab="Male age level", zlab="Frequency", 
-        main=paste("N Age for", n_year))
-  
-  
-  ####            INCOME 
-  
-  N_income <- matrix(0, n_income, n_income)
-  Mu_income <- matrix(0, n_income, n_income)
-  Mu_M_income <- matrix(0, n_income, n_income)
-  Mu_F_income <- matrix(0, n_income, n_income)
-  #log version
-  Mu_income_log<- matrix(0, n_income, n_income)
-  Mu_M_income_log <- matrix(0, n_income, n_income)
-  Mu_F_income_log <- matrix(0, n_income, n_income)
-  
-  for (i in 1:n_income){
-    for (j in 1:n_income){
-      #use pi
-      current_sub <- subset(Mu_all, Mu_all$NEW_INCTOT.x == i & Mu_all$NEW_INCTOT.y == j)
-      
-      total_folks = 1 # sum(current_sub$n)
-      
-      Mu_income_log[i,j] = sum(current_sub$EV_log) / total_folks
-      Mu_F_income_log[i,j] = sum(current_sub$EV_female_log) / total_folks
-      Mu_M_income_log[i,j] = sum(current_sub$EV_male_log) / total_folks
-      
-      
-      Mu_income[i,j] = sum(current_sub$EV) / total_folks
-      Mu_F_income[i,j] = sum(current_sub$EV_female) / total_folks
-      Mu_M_income[i,j] = sum(current_sub$EV_male) / total_folks
-      N_income[i,j] = dim(current_sub)[1]
-      
-    }
-  }
-  
-  x_income=c(1:length(income_grid))
-  
-  
-  smooth_Mu_income <- kernel2dsmooth(Mu_income, kernel.type="disk", r=2)
-  smooth_Mu_M_income <- kernel2dsmooth(Mu_M_income, kernel.type="disk", r=2)
-  smooth_Mu_F_income <- kernel2dsmooth(Mu_F_income, kernel.type="disk", r=2)
-  
-  smooth_N_income <- kernel2dsmooth(N_income, kernel.type="disk", r=2)
-  
-  #theta=-20, phi=30, r=35, 
-  persp(x_income,x_income,smooth_Mu_income, theta=-40, phi=30, r=5,#theta=-20, phi=30, r=35, #theta=120, phi=30, r=35, 
-        shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed", 
-        col="cyan", xlab="Female income level",
-        ylab="Male income level", zlab="Estimated mutual gain", 
-        main=paste("Mu Both Income", n_year))
-  
-  persp(x_income,x_income,smooth_Mu_M_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
-        shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed", 
-        col="cyan", xlab="Female income level",
-        ylab="Male income level", zlab="Estimated male gain", 
-        main=paste("Male Income", n_year))
-  
-  persp(x_income,x_income,smooth_Mu_F_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
-        shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed", 
-        col="cyan", xlab="Female income level",
-        ylab="Male income level", zlab="Estimated female gain", 
-        main=paste("Mu Female Income", n_year))
-  
-  
-  persp(x_income,x_income,smooth_N_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
-        shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed", 
-        col="cyan", xlab="Female income level",
-        ylab="Male income level", zlab="Frequency", 
-        main=paste("Mu Female Income", n_year))
-  
-  
-  ####            EDUCATION 
-  
-  N_edu <- matrix(0, n_edu, n_edu)
-  Mu_edu <- matrix(0, n_edu, n_edu)
-  Mu_M_edu <- matrix(0, n_edu, n_edu)
-  Mu_F_edu <- matrix(0, n_edu, n_edu)
-  #log version
-  Mu_edu_log<- matrix(0, n_edu, n_edu)
-  Mu_M_edu_log <- matrix(0, n_edu, n_edu)
-  Mu_F_edu_log <- matrix(0, n_edu, n_edu)
-  
-  for (i in 1:n_edu){
-    for (j in 1:n_edu){
-      #use pi
-      current_sub <- subset(Mu_all, Mu_all$NEW_EDUCD.x == i & Mu_all$NEW_EDUCD.y == j)
-      
-      total_folks = 1 # sum(current_sub$n)
-      
-      Mu_edu_log[i,j] = sum(current_sub$EV_log) / total_folks
-      Mu_F_edu_log[i,j] = sum(current_sub$EV_female_log) / total_folks
-      Mu_M_edu_log[i,j] = sum(current_sub$EV_male_log) / total_folks
-      
-      
-      Mu_edu[i,j] = sum(current_sub$EV) / total_folks
-      Mu_F_edu[i,j] = sum(current_sub$EV_female) / total_folks
-      Mu_M_edu[i,j] = sum(current_sub$EV_male) / total_folks
-      N_edu[i,j] = dim(current_sub)[1]
-      
-    }
-  }
-  
-  x_edu=c(1:length(edu_grid))
-  
-  
-  smooth_Mu_edu <- kernel2dsmooth(Mu_edu, kernel.type="disk", r=2)
-  smooth_Mu_M_edu <- kernel2dsmooth(Mu_M_edu, kernel.type="disk", r=2)
-  smooth_Mu_F_edu <- kernel2dsmooth(Mu_F_edu, kernel.type="disk", r=2)
-  
-  
-  #tau
-  Tau_age <- matrix(0, n_age, n_age)
-  
-  for (i in 1:n_age){
-    for (j in 1:n_age){
-      current_sub <- subset(Mu_all, Mu_all$NEW_AGE.x == i & Mu_all$NEW_AGE.y == j)
-      total_folks =  1 # sum(current_sub$n)
-      Tau_age[i,j] = sum(current_sub$tau) / total_folks
-    }
-  }
-
-  x_age=c(1:length(age_grid))
-  smooth_Tau_age <- kernel2dsmooth(Tau_age, kernel.type="disk", r=2)
-  
-  persp(x_age,x_age,smooth_Tau_age, theta=110, phi=30, r=35,
-        shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed",
-        col="cyan", xlab="Female age level",
-        #zlim = c(0,2*max(smooth_Mu_age[!is.na(smooth_Mu_age)])), 
-        ylab="Male age level", zlab="New marriage estimated value", 
-        main=paste("Smooth Tau Age Both for", n_year))
-  
-  
-  
-  Tau_income <- matrix(0, n_income, n_income)
-  
-  for (i in 1:n_income){
-    for (j in 1:n_income){
-      #use pi
-      current_sub <- subset(Mu_all, Mu_all$NEW_INCTOT.x == i & Mu_all$NEW_INCTOT.y == j)
-      
-      total_folks = 1 # sum(current_sub$n)
-      
-      Tau_income[i,j] = sum(current_sub$tau) / total_folks
-    }
-  }
-  
-  x_income=c(1:length(income_grid))
-  smooth_Tau_income <- kernel2dsmooth(Tau_income, kernel.type="disk", r=2)
-  persp(x_income,x_income,smooth_Tau_income, theta=120, phi=30, r=35, 
-        shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
-        nticks=5, ticktype="detailed", 
-        col="cyan", xlab="Female income level",
-        ylab="Male income level", zlab="New marriage estimated value", 
-        main=paste("Tau Both Income", n_year))
-  
 }
+
+
+x_age=c(1:length(age_grid))
+
+
+smooth_N_Age <- kernel2dsmooth(N_Age, kernel.type="disk", r=2)
+
+# self
+smooth_Mu_age <- kernel2dsmooth(Mu_age, kernel.type="disk", r=2)
+smooth_Mu_M_age <- kernel2dsmooth(Mu_M_age, kernel.type="disk", r=2)
+smooth_Mu_F_age <- kernel2dsmooth(Mu_F_age, kernel.type="disk", r=2)
+
+#log
+smooth_Mu_age_log <- kernel2dsmooth(Mu_age_log, kernel.type="disk", r=2)
+smooth_Mu_M_age_log <- kernel2dsmooth(Mu_M_age_log, kernel.type="disk", r=2)
+smooth_Mu_F_age_log <- kernel2dsmooth(Mu_F_age_log, kernel.type="disk", r=2)
+
+# median self
+smooth_Mu_age_median <- kernel2dsmooth(Mu_age_median, kernel.type="disk", r=2)
+smooth_Mu_M_age_median <- kernel2dsmooth(Mu_M_age_median, kernel.type="disk", r=2)
+smooth_Mu_F_age_median <- kernel2dsmooth(Mu_F_age_median, kernel.type="disk", r=2)
+
+# median log
+smooth_Mu_age_log_median <- kernel2dsmooth(Mu_age_log_median, kernel.type="disk", r=2)
+smooth_Mu_M_age_log_median <- kernel2dsmooth(Mu_M_age_log_median, kernel.type="disk", r=2)
+smooth_Mu_F_age_log_median <- kernel2dsmooth(Mu_F_age_log_median, kernel.type="disk", r=2)
+
+#mean self
+smooth_Mu_age_ave <- kernel2dsmooth(Mu_age_ave, kernel.type="disk", r=2)
+smooth_Mu_M_age_ave <- kernel2dsmooth(Mu_M_age_ave, kernel.type="disk", r=2)
+smooth_Mu_F_age_ave <- kernel2dsmooth(Mu_F_age_ave, kernel.type="disk", r=2)
+
+#mean log
+smooth_Mu_age_log_ave <- kernel2dsmooth(Mu_age_log_ave, kernel.type="disk", r=2)
+smooth_Mu_M_age_log_ave <- kernel2dsmooth(Mu_M_age_log_ave, kernel.type="disk", r=2)
+smooth_Mu_F_age_log_ave <- kernel2dsmooth(Mu_F_age_log_ave, kernel.type="disk", r=2)
+
+
+persp(x_age,x_age,smooth_Mu_age, theta=-20, phi=30, r=5,
+      shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed",
+      col="cyan", xlab="Female age level",
+      ylab="Male age level", zlab="Estimated mutual gain",
+      main=paste("Smooth Mu Age Both for", n_year))
+
+
+persp(x_age,x_age,smooth_Mu_M_age, theta=-20, phi=30, r=5, 
+      shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed",
+      col="cyan", xlab="Female age level",
+      ylab="Male age level", zlab="Estimated male gain", 
+      main=paste("Smooth Mu Age M for", n_year))
+
+persp(x_age,x_age,smooth_Mu_F_age, theta=-20, phi=30, r=5,
+      shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed",
+      col="cyan", xlab="Female age level",
+      ylab="Male age level", zlab="Estimated female gain", 
+      main=paste("Smooth  Mu Age F for", n_year))
+
+persp(x_age,x_age,smooth_N_Age, theta=-20, phi=30, r=5,
+      shade=0.4, axes=TRUE, scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed",
+      col="cyan", xlab="Female age level",
+      ylab="Male age level", zlab="Frequency", 
+      main=paste("N Age for", n_year))
+
+
+####            INCOME 
+
+N_income <- matrix(0, n_income, n_income)
+Mu_income <- matrix(0, n_income, n_income)
+Mu_M_income <- matrix(0, n_income, n_income)
+Mu_F_income <- matrix(0, n_income, n_income)
+#log version
+Mu_income_log<- matrix(0, n_income, n_income)
+Mu_M_income_log <- matrix(0, n_income, n_income)
+Mu_F_income_log <- matrix(0, n_income, n_income)
+
+for (i in 1:n_income){
+  for (j in 1:n_income){
+    #use pi
+    current_sub <- subset(Mu_all, Mu_all$NEW_INCTOT.x == i & Mu_all$NEW_INCTOT.y == j)
+    
+    total_folks = 1 # sum(current_sub$n)
+    
+    Mu_income_log[i,j] = sum(current_sub$EV_log) / total_folks
+    Mu_F_income_log[i,j] = sum(current_sub$EV_female_log) / total_folks
+    Mu_M_income_log[i,j] = sum(current_sub$EV_male_log) / total_folks
+    
+    
+    Mu_income[i,j] = sum(current_sub$EV) / total_folks
+    Mu_F_income[i,j] = sum(current_sub$EV_female) / total_folks
+    Mu_M_income[i,j] = sum(current_sub$EV_male) / total_folks
+    N_income[i,j] = dim(current_sub)[1]
+    
+  }
+}
+
+x_income=c(1:length(income_grid))
+
+
+smooth_Mu_income <- kernel2dsmooth(Mu_income, kernel.type="disk", r=2)
+smooth_Mu_M_income <- kernel2dsmooth(Mu_M_income, kernel.type="disk", r=2)
+smooth_Mu_F_income <- kernel2dsmooth(Mu_F_income, kernel.type="disk", r=2)
+
+smooth_N_income <- kernel2dsmooth(N_income, kernel.type="disk", r=2)
+
+#theta=-20, phi=30, r=35, 
+persp(x_income,x_income,smooth_Mu_income, theta=-40, phi=30, r=5,#theta=-20, phi=30, r=35, #theta=120, phi=30, r=35, 
+      shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed", 
+      col="cyan", xlab="Female income level",
+      ylab="Male income level", zlab="Estimated mutual gain", 
+      main=paste("Mu Both Income", n_year))
+
+persp(x_income,x_income,smooth_Mu_M_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
+      shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed", 
+      col="cyan", xlab="Female income level",
+      ylab="Male income level", zlab="Estimated male gain", 
+      main=paste("Male Income", n_year))
+
+persp(x_income,x_income,smooth_Mu_F_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
+      shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed", 
+      col="cyan", xlab="Female income level",
+      ylab="Male income level", zlab="Estimated female gain", 
+      main=paste("Mu Female Income", n_year))
+
+
+persp(x_income,x_income,smooth_N_income, theta=-40, phi=30, r=5, #theta=120, phi=30, r=35, 
+      shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed", 
+      col="cyan", xlab="Female income level",
+      ylab="Male income level", zlab="Frequency", 
+      main=paste("Mu Female Income", n_year))
+
+
+####            EDUCATION 
+
+N_edu <- matrix(0, n_edu, n_edu)
+Mu_edu <- matrix(0, n_edu, n_edu)
+Mu_M_edu <- matrix(0, n_edu, n_edu)
+Mu_F_edu <- matrix(0, n_edu, n_edu)
+#log version
+Mu_edu_log<- matrix(0, n_edu, n_edu)
+Mu_M_edu_log <- matrix(0, n_edu, n_edu)
+Mu_F_edu_log <- matrix(0, n_edu, n_edu)
+
+for (i in 1:n_edu){
+  for (j in 1:n_edu){
+    #use pi
+    current_sub <- subset(Mu_all, Mu_all$NEW_EDUCD.x == i & Mu_all$NEW_EDUCD.y == j)
+    
+    total_folks = 1 # sum(current_sub$n)
+    
+    Mu_edu_log[i,j] = sum(current_sub$EV_log) / total_folks
+    Mu_F_edu_log[i,j] = sum(current_sub$EV_female_log) / total_folks
+    Mu_M_edu_log[i,j] = sum(current_sub$EV_male_log) / total_folks
+    
+    
+    Mu_edu[i,j] = sum(current_sub$EV) / total_folks
+    Mu_F_edu[i,j] = sum(current_sub$EV_female) / total_folks
+    Mu_M_edu[i,j] = sum(current_sub$EV_male) / total_folks
+    N_edu[i,j] = dim(current_sub)[1]
+    
+  }
+}
+
+x_edu=c(1:length(edu_grid))
+
+
+smooth_Mu_edu <- kernel2dsmooth(Mu_edu, kernel.type="disk", r=2)
+smooth_Mu_M_edu <- kernel2dsmooth(Mu_M_edu, kernel.type="disk", r=2)
+smooth_Mu_F_edu <- kernel2dsmooth(Mu_F_edu, kernel.type="disk", r=2)
+
+
+#tau
+Tau_age <- matrix(0, n_age, n_age)
+
+for (i in 1:n_age){
+  for (j in 1:n_age){
+    current_sub <- subset(Mu_all, Mu_all$NEW_AGE.x == i & Mu_all$NEW_AGE.y == j)
+    total_folks =  1 # sum(current_sub$n)
+    Tau_age[i,j] = sum(current_sub$tau) / total_folks
+  }
+}
+
+x_age=c(1:length(age_grid))
+smooth_Tau_age <- kernel2dsmooth(Tau_age, kernel.type="disk", r=2)
+
+persp(x_age,x_age,smooth_Tau_age, theta=110, phi=30, r=35,
+      shade=0.4, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed",
+      col="cyan", xlab="Female age level",
+      #zlim = c(0,2*max(smooth_Mu_age[!is.na(smooth_Mu_age)])), 
+      ylab="Male age level", zlab="New marriage estimated value", 
+      main=paste("Smooth Tau Age Both for", n_year))
+
+
+
+Tau_income <- matrix(0, n_income, n_income)
+
+for (i in 1:n_income){
+  for (j in 1:n_income){
+    #use pi
+    current_sub <- subset(Mu_all, Mu_all$NEW_INCTOT.x == i & Mu_all$NEW_INCTOT.y == j)
+    
+    total_folks = 1 # sum(current_sub$n)
+    
+    Tau_income[i,j] = sum(current_sub$tau) / total_folks
+  }
+}
+
+x_income=c(1:length(income_grid))
+smooth_Tau_income <- kernel2dsmooth(Tau_income, kernel.type="disk", r=2)
+persp(x_income,x_income,smooth_Tau_income, theta=120, phi=30, r=35, 
+      shade=0.6, axes=TRUE,scale=TRUE, box=TRUE,
+      nticks=5, ticktype="detailed", 
+      col="cyan", xlab="Female income level",
+      ylab="Male income level", zlab="New marriage estimated value", 
+      main=paste("Tau Both Income", n_year))
+
+
 ```
 
-
-
-```{r, fig.width=7, fig.height=7}
-draw(2021)
-```
 # Explanation of R Code for Data Retrieval
 
 The following code snippet retrieves data from a function named `funk`, which is assumed to estimate marriage demand values for the year 2020. The function returns a list containing various elements, out of which `Mu_all` and `pair_data` are extracted.
