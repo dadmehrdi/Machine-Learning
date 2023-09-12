@@ -1,4 +1,4 @@
-R---
+---
 title: "Thesis"
 author: "Dadmehr Didgart"
 date: "2023-09-12"
@@ -6,6 +6,11 @@ output:
   pdf_document: default
   html_document: default
 ---
+
+
+# Preface
+
+This document contains code snippets used in my thesis for generating various tables and graphs across different chapters. The code below is only a part of the comprehensive computational work carried out. Here, I'll focus on explaining key parts of the code. 
 
 
 ## Note on Package Loading with pacman::p_load()
@@ -1025,6 +1030,112 @@ draw <- function(n_year){
 ```{r, fig.width=7, fig.height=7}
 draw(2021)
 ```
+# Explanation of R Code for Data Retrieval
 
+The following code snippet retrieves data from a function named `funk`, which is assumed to estimate marriage demand values for the year 2020. The function returns a list containing various elements, out of which `Mu_all` and `pair_data` are extracted.
+
+
+```{r}
+
+Mu_all <- funk(2020)$Mu_all
+pair_data <- funk(2020)$pair_data
+
+```
+
+# R Code Explanation: Data Visualization using ggplot2
+
+## Plotting Education-based Mutual Systematic Gain with Boxplots
+
+The following code block creates boxplots to visualize the distribution of estimated mutual systematic gain across different education levels for both males and females.
+
+
+## Code for creating boxplots based on education
+
+
+```{r, fig.width=5, fig.height=5}
+  
+# EDUCD with boxplot
+
+ggplot(pair_data, aes(x = factor(EDUCD.x), y = MV_log)) + 
+  geom_boxplot() + scale_x_discrete(labels=edu_labels) +
+  xlab("Female education") + ylab("Estimated mutual systematic gain") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+ggplot(pair_data, aes(x = factor(EDUCD.y), y = MV_log)) + 
+  geom_boxplot() + scale_x_discrete(labels=edu_labels) +
+  xlab("Male education") + ylab("Estimated mutual systematic gain") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+
+
+```
+
+# Code for creating boxplots based on race
+
+
+```{r, fig.width=5, fig.height=5}
+
+# RACE with boxplot
+
+ggplot(pair_data, aes(x = factor(RACE.x), y = MV_log)) + 
+  geom_boxplot() + scale_x_discrete(labels=race_labels) +
+  xlab("Female race") + ylab("Estimated mutual systematic gain") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+ggplot(pair_data, aes(x = factor(RACE.y), y = MV_log)) + 
+  geom_boxplot() + scale_x_discrete(labels=race_labels) +
+  xlab("Male race") + ylab("Estimated mutual systematic gain") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+    
+```
+
+
+# Code for creating scatter and smooth plots based on age
+
+
+```{r, fig.width=5, fig.height=5}
+ggplot(data= pair_data,aes(x=AGE.y,y=MV_log)) + 
+  geom_point(aes(size=n)) + 
+  geom_smooth(weight="HHWT.x",show.legend = FALSE) + 
+  geom_smooth(method = "lm", weight="HHWT.x", color="Red3", show.legend = FALSE) +
+  theme(legend.position="none") +
+  xlab("Male age") +
+  ylab("Estimated mutual systematic gain")
+  
+ggplot(data= pair_data,aes(x=AGE.y-AGE.x,y=MV_log)) + 
+  geom_point(aes(size=n)) + 
+  geom_smooth(weight="HHWT.x",show.legend = FALSE) + 
+  geom_smooth(method = "lm", weight="HHWT.x", color="Red3", show.legend = FALSE) +
+  theme(legend.position="none") +
+  xlab("Male age - Female age") +
+  ylab("Estimated mutual systematic gain")
+```
+
+
+
+
+# Analysis of Influences on Mutual Gain in Marriage
+
+In this section, we investigate how various factors like education, income, and age of both partners influence their mutual gain in marriage. For this purpose, we run a linear model using the `lm()` function.
+
+
+
+```{r}
+store_jm <- funk(2021)
+pair_data_jm <- store_jm$pair_data
+
+
+# Running linear model to examine influence of various factors on mutual gain in marriage
+
+
+fit_jm_int <- lm(1000*MV_log ~ 
+               as.integer(NEW_AGE.x) + as.integer(NEW_AGE.y)
+             + as.integer(NEW_INCTOT.x) + as.integer(NEW_INCTOT.y)
+             + as.integer(NEW_EDUCD.x) + as.integer(NEW_EDUCD.y)
+             + factor(NEW_RACE.x) + factor(NEW_RACE.y)
+             , data = pair_data_jm
+             , weights = pair_data_jm$HHW)
+
+summary(fit_jm_int)
+```
 
 
