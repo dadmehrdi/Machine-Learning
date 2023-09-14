@@ -10,3 +10,5 @@ Files with names starting with "thesis" contain the R code for my Ph.D. thesis i
 
 ### Machine Learning Project
 Files with names that start with "ML" are part of a machine learning course project.
+
+ML3-A6 code aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible. 
