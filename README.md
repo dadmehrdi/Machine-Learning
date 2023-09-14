@@ -4,15 +4,15 @@ Copy code
 ## About Me
 I am an Economics Ph.D. student with a background in data analysis, data engineering, and health economics.
 
-[LinkedIn](linkedin.com/in/dadmehr-didgar)  
-[Website](sites.google.com/view/dadmehrdidgar)  
+[LinkedIn](https://www.linkedin.com/in/dadmehr-didgar/)  
+[Website](https://www.sites.google.com/view/dadmehrdidgar)  
 
 ## Repository Contents
 
 ### Thesis Work
 Files with names starting with "thesis" contain the R code for my Ph.D. thesis in Economics. 
 
-This code aims to answer critical questions in the Industrial Organization and Applied Microeconomics field. It utilizes a variety of econometric techniques to analyze data and generate insights. If you want more context on the research questions and methodologies, refer to my [working papers](#Working-Papers) section in my resume.
+This code aims to answer critical questions in the Industrial Organization and Applied Microeconomics field. It utilizes a variety of econometric techniques to analyze data and generate insights. For more context on the research questions and methodologies, refer to my [working papers](#Working-Papers) section in my resume.
 
 
 ### Machine Learning Project
