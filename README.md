@@ -18,4 +18,7 @@ This code aims to answer critical questions in the Industrial Organization and A
 ### Machine Learning Project
 Files with names that start with "ML" are part of a machine learning course project.
 
-ML3-A6 code aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible.
+ML3-A6 aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible.
+
+
+ML4-A5 aims to build and evaluate different deep learning architectures, including logistic regression, single-layer, and convolutional neural networks, for image classification on the CIFAR-10 dataset using PyTorch. It also involves hyperparameter tuning to optimize the models, targeting at least 70% accuracy on a validation set.
