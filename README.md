@@ -2,7 +2,7 @@ Copy code
 # Dadmehr's GitHub Repository
 
 ## About Me
-I am an Economics Ph.D. student with a background in data analysis, data engineering, and health economics.
+Hello! I'm Dadmehr, a Ph.D. candidate in Economics at the University of Washington. With a multifaceted background spanning data analysis, data engineering, and health economics, I bring a blend of quantitative skills and industry insights to my research. My academic interests lie in the intersections of Industrial Organization and Applied Microeconomics, where I employ various econometric methods to delve into complex economic issues.
 
 [LinkedIn](https://www.linkedin.com/in/dadmehr-didgar/)  
 [Website](https://www.sites.google.com/view/dadmehrdidgar)  
