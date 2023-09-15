@@ -15,7 +15,7 @@ Files with names starting with "thesis" contain the R code for my Ph.D. thesis i
 This code aims to answer critical questions in the Industrial Organization and Applied Microeconomics field. It utilizes a variety of econometric techniques to analyze data and generate insights. If you want more context on the research questions and methodologies, please look at the Working Papers section in my resume.
 
 ### Machine Learning Projects
-Files with names that start with "ML" are part of a machine learning course project.
+Files with names starting with "ML" are part of a machine learning course project.
 
 ML3-A6 aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible.
 
