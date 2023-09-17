@@ -1,7 +1,6 @@
 ---
 title: "Thesis"
 author: "Dadmehr Didgar"
-date: "2023-09-12"
 output:
   html_document: default
   pdf_document: default
@@ -1109,7 +1108,7 @@ ggplot(data= pair_data,aes(x=AGE.y-AGE.x,y=MV_log)) +
 
 
 # Analysis of Influences on Mutual Gain in Marriage
-
+d
 In this section, we investigate how various factors like education, income, and age of both partners influence their mutual gain in marriage. For this purpose, we run a linear model using the `lm()` function.
 
 
