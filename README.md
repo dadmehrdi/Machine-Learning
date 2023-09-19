@@ -23,5 +23,5 @@ ML4-A5 aims to build and evaluate different deep learning architectures, includi
 
 ML5-A3 aims to implement Kernel Ridge Regression on a synthetic dataset to predict a function. The project involves hyperparameter optimization via cross-validation and leverages non-parametric bootstrap techniques to construct confidence intervals for the predicted outcomes.
 
-### High-Frequency Trading Hedge Funds
-XYZ_Capital_Management aims to implement different techniques, including deep neural network and regression, to forecast y using x_1 to x_5 - the 1st part of the code aims to bring empirical evidence for some theoretical question.
+### XYZ High-Frequency Trading Hedge Fund
+XYZ_Capital_Management aims to implement different techniques, including deep neural network and regression, to forecast y using x_1 to x_5 - the 1st part of the code aims to bring empirical evidence for some theoretical questions.
