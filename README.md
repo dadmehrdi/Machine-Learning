@@ -17,11 +17,11 @@ This code aims to answer critical questions in the Industrial Organization and A
 ### Machine Learning Projects
 Files with names starting with "ML" are part of a machine learning course project.
 
-ML3-A6 aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible.
+"ML3-A6" aims to implement Principal Component Analysis (PCA) on the MNIST dataset. The primary objective is to reduce the dimensionality of the dataset while maintaining as much variability in the data as possible.
 
-ML4-A5 aims to build and evaluate different deep learning architectures, including logistic regression, single-layer, and convolutional neural networks, for image classification on the CIFAR-10 dataset using PyTorch. It also involves hyperparameter tuning to optimize the models, targeting at least 70% accuracy on a validation set.
+"ML4-A5" aims to build and evaluate different deep learning architectures, including logistic regression, single-layer, and convolutional neural networks, for image classification on the CIFAR-10 dataset using PyTorch. It also involves hyperparameter tuning to optimize the models, targeting at least 70% accuracy on a validation set.
 
-ML5-A3 aims to implement Kernel Ridge Regression on a synthetic dataset to predict a function. The project involves hyperparameter optimization via cross-validation and leverages non-parametric bootstrap techniques to construct confidence intervals for the predicted outcomes.
+"ML5-A3" aims to implement Kernel Ridge Regression on a synthetic dataset to predict a function. The project involves hyperparameter optimization via cross-validation and leverages non-parametric bootstrap techniques to construct confidence intervals for the predicted outcomes.
 
 ### XYZ High-Frequency Trading Hedge Fund
-XYZ_Capital_Management aims to implement different techniques, including deep neural network and regression, to forecast y using x_1 to x_5 - the 1st part of the code aims to bring empirical evidence for some theoretical questions.
+"XYZ_Capital_Management" code aims to implement different techniques, including deep neural network and regression, to forecast y using x_1 to x_5 - the 1st part of the code aims to bring empirical evidence for some theoretical questions.
