@@ -23,5 +23,5 @@ Files with names starting with "ML" are part of a machine learning course projec
 
 "ML5-A3" aims to implement Kernel Ridge Regression on a synthetic dataset to predict a function. The project involves hyperparameter optimization via cross-validation and leverages non-parametric bootstrap techniques to construct confidence intervals for the predicted outcomes.
 
-### XYZ High-Frequency Trading Hedge Fund
+### Capital_Management
 "XYZ_Capital_Management" code aims to implement different techniques, including deep neural network and regression, to forecast y using x_1 to x_5 - the 1st part of the code aims to bring empirical evidence for some theoretical questions.
