@@ -28,4 +28,4 @@ Files with names starting with "ML" are part of a machine learning course projec
 
 
 ###  Web Scraping
-"AEA_Scraping" aims to extract and visualize the frequency of the top 10 non-academic positions from the 2022 JOE listings on the AEA website using web scraping techniques.
+"AEA_Scraping" aims to extract and visualize the frequency of the top 10 non-academic positions from the 2022 Job Openings for Economists (JOE) listings on the American Economic Association (AEA) website using web scraping techniques.
