@@ -29,3 +29,7 @@ Files with names starting with "ML" are part of a machine learning course projec
 
 ###  Web Scraping
 "AEA_Scraping" aims to extract and visualize the frequency of the top 10 non-academic positions from the 2022 Job Openings for Economists (JOE) listings on the American Economic Association (AEA) website using web scraping techniques.
+
+### Apple Stock Price Prediction using LSTM
+"Apple Stock Price Prediction" aims to predict Apple's stock prices for 2023 using Long Short-Term Memory (LSTM) networks. LSTM is a type of recurrent neural network optimized for sequence prediction problems.
+
