@@ -32,5 +32,10 @@ Files with names starting with "ML" are part of a machine learning course projec
 
 ### Apple Stock Price Prediction using LSTM
 "Apple Stock Price Prediction" aims to predict Apple's stock prices for 2023 using Long Short-Term Memory (LSTM) networks. LSTM is a type of recurrent neural network optimized for sequence prediction problems.
+
 ### IPUMS data
 "IPUMS data" utilizes 2021 datasets to dissect income and demographic trends. Statistical tests and causal inference methods analyze correlations, aiming to spotlight socioeconomic factors influencing income.
+ 
+### Income Prediction with Decision Tree Ensembles
+"Decisions Trees" compares Gradient Boosting, AdaBoost, and Random Forest using IPUMS data to predict six-digit incomes, highlighting each ensemble method's effectiveness and decision-making process.
+
